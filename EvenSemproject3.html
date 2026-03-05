@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Better Stays Worldwide Property Rentals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4ff, #ffffff);
+      color: #333;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    /* ===== LOGIN PAGE STYLES ===== */
+    .login-wrapper {
+      width: 100%;
+      max-width: 380px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 26px 22px 30px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      margin: 0 auto 40px auto;
+    }
+
+    .logo {
+      margin-bottom: 16px;
+    }
+
+    .logo img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #1f7aec;
+    }
+
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1f7aec;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    .login-wrapper h2 {
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
+
+    .login-wrapper p {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .login-wrapper form {
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .login-wrapper label {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .required-star {
+      color: #e63946;
+    }
+
+    .login-wrapper input[type="email"],
+    .login-wrapper input[type="password"] {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    .login-wrapper input:focus {
+      outline: none;
+      border-color: #1f7aec;
+      box-shadow: 0 0 0 2px rgba(31, 122, 236, 0.15);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.78rem;
+    }
+
+    .actions a {
+      color: #1f7aec;
+      text-decoration: none;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+
+    .login-wrapper button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      background: #1f7aec;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .login-wrapper button:hover {
+      background: #165fb5;
+    }
+
+    .register-text {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .register-text a {
+      color: #1f7aec;
+      text-decoration: none;
+    }
+
+    .register-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== ORIGINAL PAGE STYLES ===== */
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    header p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .content {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* Property card */
+    .property-card {
+      flex: 1 1 300px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .property-image {
+      height: 200px;
+      background-image: url("https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .property-info {
+      padding: 18px;
+    }
+
+    .property-info h2 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .location {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .property-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .price {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #1f7aec;
+      margin-bottom: 8px;
+    }
+
+    .property-description {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Booking form */
+    .booking-form-wrapper {
+      flex: 1 1 340px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .booking-form-wrapper h2 {
+      margin-bottom: 8px;
+    }
+
+    .booking-form-wrapper p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1f7aec;
+      box-shadow: 0 0 0 2px rgba(31, 122, 236, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .terms {
+      display: flex;
+      gap: 6px;
+      font-size: 0.8rem;
+      align-items: center;
+    }
+
+    .submit-row {
+      grid-column: 1 / -1;
+      text-align: right;
+    }
+
+    button {
+      padding: 10px 18px;
+      background: #1f7aec;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    button:hover {
+      background: #165fb5;
+    }
+
+    /* Other properties */
+    .other-properties {
+      margin-top: 50px;
+    }
+
+    .other-properties h2 {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .other-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .other-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .other-card h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .other-card p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .content {
+        flex-direction: column;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <!-- ===== LOGIN SECTION ===== -->
+    <section class="login-wrapper" id="login">
+      <div class="logo">
+        <!-- Change this to your own logo path if needed -->
+        <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg"
+             alt="Better Stays Logo" />
+      </div>
+      <div class="brand-name">Better Stays Worldwide Rentals</div>
+      <div class="tagline">Sign in to manage your bookings</div>
+
+      <h2>Login</h2>
+      <p>Use your registered email to continue</p>
+
+      <form>
+        <div class="form-group">
+          <label>Email <span class="required-star">*</span></label>
+          <input type="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password <span class="required-star">*</span></label>
+          <input type="password" required />
+        </div>
+
+        <div class="actions">
+          <label>
+            <input type="checkbox" />
+            Remember me
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit">Login</button>
+
+        <div class="register-text">
+          New to Better Stays? <a href="#booking">Skip & Book as Guest</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== ORIGINAL PROPERTY PAGE ===== -->
+    <header>
+      <h1>Lakeview Apartments</h1>
+      <p>Book your stay at a modern 2BHK rental property</p>
+    </header>
+
+    <div class="content" id="booking">
+      <!-- Property details -->
+      <section class="property-card">
+        <div class="property-image"></div>
+        <div class="property-info">
+          <h2>Modern 2BHK with Balcony</h2>
+          <div class="location">Hyderabad, Telangana</div>
+          <div class="property-meta">
+            <span>2 Bedrooms</span>
+            <span>2 Bathrooms</span>
+            <span>Max 4 Guests</span>
+            <span>Wi-Fi · Parking · AC</span>
+          </div>
+          <div class="price">₹2,500 / night</div>
+          <p class="property-description">
+            Spacious apartment with lake view, fully furnished kitchen and high-speed internet.
+          </p>
+        </div>
+      </section>
+
+      <!-- Booking form -->
+      <section class="booking-form-wrapper">
+        <h2>Book this Property</h2>
+        <p>Fields marked with <span class="required-star">*</span> are required</p>
+
+        <form>
+          <div class="full-width">
+            <label>Full Name <span class="required-star">*</span></label>
+            <input type="text" required />
+          </div>
+
+          <div>
+            <label>Email <span class="required-star">*</span></label>
+            <input type="email" required />
+          </div>
+
+          <div>
+            <label>Phone <span class="required-star">*</span></label>
+            <input type="tel" pattern="[0-9]{10}" required />
+            <div class="helper-text">10-digit mobile number</div>
+          </div>
+
+          <div>
+            <label>Check-in <span class="required-star">*</span></label>
+            <input type="date" required />
+          </div>
+
+          <div>
+            <label>Check-out <span class="required-star">*</span></label>
+            <input type="date" required />
+          </div>
+
+          <div>
+            <label>Guests</label>
+            <input type="number" min="1" max="4" value="2" />
+          </div>
+
+          <div>
+            <label>Stay Type</label>
+            <select>
+              <option>Business</option>
+              <option>Vacation</option>
+              <option>Family</option>
+            </select>
+          </div>
+
+          <div class="full-width">
+            <label>Special Requests</label>
+            <textarea></textarea>
+          </div>
+
+          <div class="full-width terms">
+            <input type="checkbox" required />
+            <span>I agree to the terms & cancellation policy</span>
+          </div>
+
+          <div class="submit-row">
+            <button>Confirm Booking</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Other places -->
+    <section class="other-properties">
+      <h2>Explore Other Places</h2>
+
+      <div class="other-grid">
+        <div class="other-card">
+          <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg">
+          <h3>City View Studio</h3>
+          <p>Bangalore · ₹1,800 / night</p>
+          <button>View</button>
+        </div>
+
+        <div class="other-card">
+          <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg">
+          <h3>Beachside Villa</h3>
+          <p>Goa · ₹4,500 / night</p>
+          <button>View</button>
+        </div>
+
+        <div class="other-card">
+          <img src="C:\java codes\FWD\🤔°○ 2025 Scuderia Ferrari SF-25 wallpapaer.jpg">
+          <h3>F1 race</h3>
+          <p>Ooty · ₹3,200 / for 20 rounds</p>
+          <button>View</button>
+        </div>
+
+        <div class="other-card">
+          <img src="C:\wallpapers\aizen.jpg">
+          <h3>Movie</h3>
+          <p>Ooty · ₹5,000 / Bleach: Thousand blood war part4</p>
+          <button>View</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
