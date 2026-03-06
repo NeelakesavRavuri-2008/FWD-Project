@@ -525,7 +525,8 @@
 'City View Studio',
 'Bangalore',
 '₹1,800 / night',
-'https://th.bing.com/th/id/OIP.gMKeuDhX34bGQKipDb2qJwHaFj?w=213&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'
+'https://th.bing.com/th/id/OIP.gMKeuDhX34bGQKipDb2qJwHaFj?w=213&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+'Comfortable studio with beautiful city skyline view. Perfect for business travelers and solo stays.'
 )">View</button>
         </div>
 
@@ -537,7 +538,8 @@
 'Beachside Villa',
 'Goa',
 '₹4,500 / night',
-'https://th.bing.com/th/id/OIP.OHMaJGjk82-ksPAL0vJ9PQHaEJ?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'
+'https://th.bing.com/th/id/OIP.OHMaJGjk82-ksPAL0vJ9PQHaEJ?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+'Luxury villa located near the beach with stunning sea view. Ideal for relaxing vacations and family holidays.'
 )">View</button>
         </div>
 
@@ -549,7 +551,8 @@
 'F1 Race Experience',
 'Ooty',
 '₹3,200 / 20 rounds',
-'https://th.bing.com/th/id/OIP.JBBrK6TRmA63fLn6UTHtBgHaEp?w=269&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'
+'https://th.bing.com/th/id/OIP.JBBrK6TRmA63fLn6UTHtBgHaEp?w=269&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+'Drive high speed racing cars on a professional track. Perfect for motorsport lovers and thrill seekers.'
 )">View</button>
         </div>
 
@@ -561,7 +564,8 @@
 'Bleach Movie Experience',
 'Ooty',
 '₹5,000',
-'https://th.bing.com/th/id/OIP.M3CAMlwjt5DpOC50Mm287wHaEo?w=268&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'
+'https://th.bing.com/th/id/OIP.M3CAMlwjt5DpOC50Mm287wHaEo?w=268&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+'Special anime theatre experience for Bleach fans. Enjoy the latest Thousand Year Blood War screening.'
 )">View</button>
         </div>
       </div>
@@ -613,7 +617,7 @@ bookingForm.addEventListener("submit", function(e){
   alert("Booking Successful! Your stay has been reserved.");
 
 });
-function viewProperty(name, location, price, image){
+function viewProperty(name, location, price, image, description){
 
   // change main property image
   document.getElementById("mainPropertyImage").style.backgroundImage =
@@ -623,6 +627,7 @@ function viewProperty(name, location, price, image){
   document.querySelector(".property-info h2").innerText = name;
   document.querySelector(".location").innerText = location;
   document.querySelector(".price").innerText = price;
+  document.querySelector(".property-description").innerText = description;
 
   // scroll to property section
   document.getElementById("booking").scrollIntoView({
