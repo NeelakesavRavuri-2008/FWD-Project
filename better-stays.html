@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Better Stays Worldwide – Property Rentals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1f3d;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --text: #2c2c2c;
+      --muted: #7a7a7a;
+      --border: #e0d9ce;
+      --bg: #f4f1ec;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* =====================
+       LOGIN PAGE
+    ===================== */
+    #login-page {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #login-page::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+      top: -260px; right: -180px;
+      pointer-events: none;
+    }
+
+    #login-page::after {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.07);
+      bottom: -180px; left: -120px;
+      pointer-events: none;
+    }
+
+    .login-card {
+      background: var(--cream);
+      border-radius: 20px;
+      width: 420px;
+      padding: 48px 44px 44px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.15);
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.6s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .brand-logo {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--gold);
+    }
+
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .brand-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .brand-text span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    .divider-gold {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    .login-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .subtitle { font-size: 0.84rem; color: var(--muted); margin-bottom: 32px; }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+
+    .req { color: var(--gold); }
+
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .remember input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--gold); }
+
+    .forgot { font-size: 0.82rem; color: var(--gold); text-decoration: none; font-weight: 500; }
+    .forgot:hover { text-decoration: underline; }
+
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--navy), #1a3560);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .btn-login:hover::after { opacity: 1; }
+    .btn-login:hover { box-shadow: 0 6px 24px rgba(201,168,76,0.35); }
+    .btn-login span { position: relative; z-index: 1; }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .btn-guest {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-guest:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .footer-text a { color: var(--gold); text-decoration: none; font-weight: 500; }
+    .footer-text a:hover { text-decoration: underline; }
+
+    /* =====================
+       MAIN PAGE
+    ===================== */
+    #main-page {
+      display: none;
+      background: var(--bg);
+      min-height: 100vh;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold);
+    }
+
+    .nav-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nav-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .nav-title span { color: var(--gold-light); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+
+    .nav-right a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .nav-right a:hover { color: var(--gold-light); }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+      padding: 7px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .btn-nav:hover { background: var(--gold-light) !important; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, var(--navy) 0%, #1a3560 60%, #0f1f3d 100%);
+      padding: 60px 40px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+      top: -200px; right: -100px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 20px;
+      padding: 5px 16px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    /* PAGE WRAPPER */
+    .page-wrapper { max-width: 1120px; margin: 0 auto; padding: 48px 24px 64px; }
+
+    /* CONTENT GRID */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    @media(max-width: 780px) {
+      .content { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.9rem; }
+      nav { padding: 0 20px; }
+    }
+
+    /* PROPERTY CARD */
+    .property-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .property-image {
+      height: 240px;
+      background-image: url("https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg");
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.4s;
+      position: relative;
+    }
+
+    .property-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .property-info { padding: 22px 24px 26px; }
+
+    .property-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .location { font-size: 0.84rem; color: var(--muted); margin-bottom: 14px; }
+
+    .property-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+
+    .meta-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .price { font-size: 1.3rem; font-weight: 600; color: var(--gold); margin-bottom: 10px; }
+    .price-unit { font-size: 0.85rem; font-weight: 400; color: var(--muted); }
+
+    .property-description { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* BOOKING FORM */
+    .booking-form-wrapper {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 28px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .booking-form-wrapper h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .form-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    @media(max-width: 500px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .full { grid-column: 1 / -1; }
+
+    .form-field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+    }
+
+    .form-field textarea { resize: vertical; min-height: 70px; }
+    .helper { font-size: 0.73rem; color: var(--muted); margin-top: 3px; }
+
+    .terms-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .terms-row input { width: auto; }
+
+    .btn-book {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--navy), #1a3560);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-book::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .btn-book:hover::after { opacity: 1; }
+    .btn-book:hover { box-shadow: 0 6px 24px rgba(201,168,76,0.35); }
+    .btn-book span { position: relative; z-index: 1; }
+
+    /* OTHER PROPERTIES */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .other-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .other-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.12); }
+
+    .other-card img { width: 100%; height: 150px; object-fit: cover; }
+
+    .other-card-body { padding: 14px 16px 16px; }
+
+    .other-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .other-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
+
+    .btn-view {
+      display: inline-block;
+      padding: 7px 16px;
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--navy);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-view:hover { background: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    footer span { color: var(--gold-light); }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 30px; right: 30px;
+      background: var(--navy);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(.16,1,.3,1);
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== LOGIN PAGE ===================== -->
+  <div id="login-page">
+    <div class="login-card">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" alt="Logo" />
+        </div>
+        <div class="brand-text">
+          <h1>Better Stays</h1>
+          <span>Worldwide Rentals</span>
+        </div>
+      </div>
+
+      <div class="divider-gold"></div>
+
+      <h2>Welcome back</h2>
+      <p class="subtitle">Sign in to manage your bookings</p>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password <span class="req">*</span></label>
+          <input type="password" placeholder="••••••••" required />
+        </div>
+
+        <div class="remember-row">
+          <label class="remember">
+            <input type="checkbox" /> Remember me
+          </label>
+          <a href="#" class="forgot">Forgot password?</a>
+        </div>
+
+        <button class="btn-login" type="submit"><span>Sign In</span></button>
+      </form>
+
+      <div class="or-divider">or</div>
+
+      <button class="btn-guest" onclick="showMainPage()">Continue as Guest →</button>
+
+      <div class="footer-text">
+        New to Better Stays? <a href="#">Create an account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN PAGE ===================== -->
+  <div id="main-page">
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-brand">
+        <div class="nav-logo">
+          <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" alt="Logo" />
+        </div>
+        <div class="nav-title">Better <span>Stays</span></div>
+      </div>
+      <div class="nav-right">
+        <a href="#">Properties</a>
+        <a href="#">About</a>
+        <a href="#" class="btn-nav" onclick="showLogin(event)">Sign Out</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">Featured Property</div>
+      <h1>Lakeview Apartments</h1>
+      <p>Book your stay at a modern 2BHK rental in the heart of Hyderabad</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="page-wrapper">
+      <div class="content" id="booking">
+
+        <!-- Property card -->
+        <section class="property-card">
+          <div class="property-image" id="mainPropertyImage">
+            <div class="property-badge">Available Now</div>
+          </div>
+          <div class="property-info">
+            <h2 id="propName">Modern 2BHK with Balcony</h2>
+            <div class="location" id="propLocation">📍 Hyderabad, Telangana</div>
+            <div class="property-meta">
+              <span class="meta-tag">2 Bedrooms</span>
+              <span class="meta-tag">2 Bathrooms</span>
+              <span class="meta-tag">Max 4 Guests</span>
+              <span class="meta-tag">Wi-Fi</span>
+              <span class="meta-tag">Parking</span>
+              <span class="meta-tag">AC</span>
+            </div>
+            <div class="price" id="propPrice">₹2,500 <span class="price-unit">/ night</span></div>
+            <p class="property-description" id="propDesc">
+              Spacious apartment with lake view, fully furnished kitchen and high-speed internet.
+            </p>
+          </div>
+        </section>
+
+        <!-- Booking form -->
+        <section class="booking-form-wrapper">
+          <h2>Book this Property</h2>
+          <p class="form-subtitle">Fields marked <span class="req">*</span> are required</p>
+
+          <form id="bookingForm">
+            <div class="form-grid">
+
+              <div class="form-field full">
+                <label>Full Name <span class="req">*</span></label>
+                <input type="text" placeholder="Your full name" required />
+              </div>
+
+              <div class="form-field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="form-field">
+                <label>Phone <span class="req">*</span></label>
+                <input type="tel" pattern="[0-9]{10}" placeholder="10-digit number" required />
+                <div class="helper">10-digit mobile number</div>
+              </div>
+
+              <div class="form-field">
+                <label>Check-in <span class="req">*</span></label>
+                <input type="date" required />
+              </div>
+
+              <div class="form-field">
+                <label>Check-out <span class="req">*</span></label>
+                <input type="date" required />
+              </div>
+
+              <div class="form-field">
+                <label>Guests</label>
+                <input type="number" min="1" max="4" value="2" />
+              </div>
+
+              <div class="form-field">
+                <label>Stay Type</label>
+                <select>
+                  <option>Business</option>
+                  <option>Vacation</option>
+                  <option>Family</option>
+                </select>
+              </div>
+
+              <div class="form-field full">
+                <label>Special Requests</label>
+                <textarea placeholder="Any special requirements…"></textarea>
+              </div>
+
+              <div class="form-field full terms-row">
+                <input type="checkbox" required />
+                <span>I agree to the terms &amp; cancellation policy</span>
+              </div>
+
+              <div class="form-field full">
+                <label>Payment Method</label>
+                <select id="paymentMethod">
+                  <option value="upi">UPI</option>
+                  <option value="card">Credit / Debit Card</option>
+                  <option value="cod">Pay at Property</option>
+                </select>
+              </div>
+
+              <div id="paymentDetails" class="full form-grid" style="gap:16px;"></div>
+
+              <div class="full">
+                <button class="btn-book" type="submit"><span>Confirm Booking →</span></button>
+              </div>
+
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- Other Properties -->
+      <section>
+        <div class="section-header">
+          <h2>Explore Other Places</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="other-grid">
+          <div class="other-card">
+            <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" alt="City View Studio">
+            <div class="other-card-body">
+              <h3>City View Studio</h3>
+              <p>Bangalore · ₹1,800 / night</p>
+              <button class="btn-view" onclick="viewProperty('City View Studio','Bangalore','₹1,800 / night','https://th.bing.com/th/id/OIP.gMKeuDhX34bGQKipDb2qJwHaFj?w=213&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Comfortable studio with beautiful city skyline view. Perfect for business travelers and solo stays.')">View Property</button>
+            </div>
+          </div>
+
+          <div class="other-card">
+            <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg" alt="Beachside Villa">
+            <div class="other-card-body">
+              <h3>Beachside Villa</h3>
+              <p>Goa · ₹4,500 / night</p>
+              <button class="btn-view" onclick="viewProperty('Beachside Villa','Goa','₹4,500 / night','https://th.bing.com/th/id/OIP.OHMaJGjk82-ksPAL0vJ9PQHaEJ?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Luxury villa located near the beach with stunning sea view. Ideal for relaxing vacations and family holidays.')">View Property</button>
+            </div>
+          </div>
+
+          <div class="other-card">
+            <img src="https://images.pexels.com/photos/12801013/pexels-photo-12801013.jpeg" alt="F1 Race">
+            <div class="other-card-body">
+              <h3>F1 Race Experience</h3>
+              <p>Ooty · ₹3,200 / 20 rounds</p>
+              <button class="btn-view" onclick="viewProperty('F1 Race Experience','Ooty','₹3,200 / 20 rounds','https://th.bing.com/th/id/OIP.JBBrK6TRmA63fLn6UTHtBgHaEp?w=269&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Drive high speed racing cars on a professional track. Perfect for motorsport lovers and thrill seekers.')">View Property</button>
+            </div>
+          </div>
+
+          <div class="other-card">
+            <img src="https://images.pexels.com/photos/7234213/pexels-photo-7234213.jpeg" alt="Anime Theatre">
+            <div class="other-card-body">
+              <h3>Anime Theatre</h3>
+              <p>Ooty · ₹5,000 / Bleach TYBW</p>
+              <button class="btn-view" onclick="viewProperty('Bleach Movie Experience','Ooty','₹5,000','https://th.bing.com/th/id/OIP.M3CAMlwjt5DpOC50Mm287wHaEo?w=268&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Special anime theatre experience for Bleach fans. Enjoy the latest Thousand Year Blood War screening.')">View Property</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      © 2025 <span>Better Stays Worldwide</span>. All rights reserved.
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">✅ Booking confirmed! Your stay has been reserved.</div>
+
+  <script>
+    // ---- PAGE SWITCHING ----
+    function showMainPage() {
+      document.getElementById('login-page').style.display = 'none';
+      const main = document.getElementById('main-page');
+      main.style.display = 'block';
+      updatePayment();
+    }
+
+    function showLogin(e) {
+      if (e) e.preventDefault();
+      document.getElementById('main-page').style.display = 'none';
+      document.getElementById('login-page').style.display = 'flex';
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      showMainPage();
+    }
+
+    // ---- PAYMENT METHOD ----
+    function updatePayment() {
+      const method = document.getElementById('paymentMethod').value;
+      const details = document.getElementById('paymentDetails');
+
+      if (method === 'upi') {
+        details.innerHTML = `
+          <div class="form-field full">
+            <label>UPI ID</label>
+            <input type="text" placeholder="example@upi">
+          </div>`;
+      } else if (method === 'card') {
+        details.innerHTML = `
+          <div class="form-field full">
+            <label>Card Number</label>
+            <input type="text" maxlength="16" placeholder="1234 5678 9012 3456">
+          </div>
+          <div class="form-field">
+            <label>Expiry Date</label>
+            <input type="month">
+          </div>
+          <div class="form-field">
+            <label>CVV</label>
+            <input type="password" maxlength="3" placeholder="•••">
+          </div>`;
+      } else {
+        details.innerHTML = `
+          <div class="form-field full" style="color:#2a7a4b;font-size:0.85rem;background:#edfbf3;padding:10px 14px;border-radius:8px;border:1px solid #b6ebd0;">
+            💳 You will pay at the property during check-in.
+          </div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const pm = document.getElementById('paymentMethod');
+      if (pm) pm.addEventListener('change', updatePayment);
+    });
+
+    // ---- BOOKING SUBMIT ----
+    document.addEventListener('submit', function(e) {
+      if (e.target.id === 'bookingForm') {
+        e.preventDefault();
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3500);
+      }
+    });
+
+    // ---- VIEW PROPERTY ----
+    function viewProperty(name, location, price, image, description) {
+      document.getElementById('mainPropertyImage').style.backgroundImage = `url('${image}')`;
+      document.getElementById('propName').innerText = name;
+      document.getElementById('propLocation').innerText = '📍 ' + location;
+      document.getElementById('propPrice').innerHTML = price;
+      document.getElementById('propDesc').innerText = description;
+      document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
